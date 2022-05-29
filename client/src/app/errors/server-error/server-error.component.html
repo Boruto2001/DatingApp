@@ -1,0 +1,19 @@
+<h3>Internal Server Error -Refresh the page!!!</h3>
+<ng-container *ngIf="error">
+  <h4 class="text-danger">
+    Error:object reference not set to an instance of an object
+  </h4>
+  <p class="font-weight-bold">Note:500 Server Error</p>
+  <p>What to do next?</p>
+  <ol>
+    <li>Open chrome dev tools</li>
+    <li>Inspect the network</li>
+    <li>Check the failing request</li>
+    <li>Examine the Request URL -make sure it is correct</li>
+    <li>Reproduce error in postman</li>
+  </ol>
+  <p>Stack Trace:</p>
+  <code class="mt-5" style="background-color: whitesmoke">{{
+    error.message
+  }}</code>
+</ng-container>
