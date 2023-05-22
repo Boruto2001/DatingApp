@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.Extensions;
+using API.Helpers;
 
 namespace API.Entities
 {
@@ -37,10 +38,11 @@ namespace API.Entities
 
         public ICollection<Photo> Photos { get; set; }
 
-        // public int GetAge(){
-        //     // return 177;
-        //     return DateOfBirth.CalculateAge();
-        // }
+        public List<UserLike> LikedByUsers{get;set;}
+
+        public List<UserLike> LikedUsers{get;set;}
+
+        
 
     }
 }

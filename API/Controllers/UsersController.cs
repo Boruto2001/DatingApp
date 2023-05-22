@@ -38,8 +38,8 @@ namespace API.Controllers
 
             var users = await _userRepository.GetMembersAsync(userParams);
 
-            Response.AddPaginationHeader(users.CurrentPage, users.PageSize, 
-                users.TotalCount, users.TotalPages);
+            Response.AddPaginationHeader(new PaginationHeader(users.CurrentPage, users.PageSize, 
+                users.TotalCount, users.TotalPages));
 
             return Ok(users);
          
