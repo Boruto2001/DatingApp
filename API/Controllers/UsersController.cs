@@ -1,9 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using API.Data;
 using API.DTOs;
 using API.Entities;
 using API.Extensions;
@@ -12,8 +6,6 @@ using API.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-
 namespace API.Controllers
 {
         [Authorize]
@@ -31,8 +23,6 @@ namespace API.Controllers
             _userRepository = userRepository;
            
         }
-
-        //we add two end points to get specific users and all users from database
         [HttpGet]
        
         public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers
@@ -52,10 +42,8 @@ namespace API.Controllers
                 users.TotalCount, users.TotalPages);
 
             return Ok(users);
-            //returns all registered users
+         
         }
-
-        //api/users/1 1 is id
        
         [HttpGet("{username}",Name ="GetUser")]
 
@@ -64,10 +52,10 @@ namespace API.Controllers
 
            return user;
 
-            //returns id matched user
+     
         }
 
-        [HttpPut] //To update on server we use put
+        [HttpPut] 
 
         public async Task<ActionResult> UpdateUser(MemberUpdateDto memberUpdateDto){
                 var username=User.GetUsername();
@@ -91,13 +79,12 @@ namespace API.Controllers
                };
 
                if(user.Photos.Count==0){
-                   photo.IsMain=true; //checks whether this is first photo or not
-                   //If it is first photo set to  main
+                   photo.IsMain=true; 
                }
                user.Photos.Add(photo);
 
                if(await _userRepository.SaveAllAsync()){
-                //    return _mapper.Map<PhotoDto>(photo);
+               
                 return CreatedAtRoute("GetUser",new {username=user.UserName},_mapper.Map<PhotoDto>(photo));
                 
                }
